@@ -1,0 +1,29 @@
+@startuml "Pay"
+left to right direction
+interface PayStrat{
+    + processPayment(): void
+}
+
+class DebCardPayment {
+    + processPayment(): void
+}
+
+class SPBPayment {
+    + processPayment(): void
+}
+
+class CryptoPayment {
+    + processPayment(): void
+}
+
+class PayProc {
+    - payment: PayStrat
+    + setPayment(payment: PaymentStrategy): void
+    + processPayment(): void
+}
+
+PayStrat <|-- DebCardPayment
+PayStrat <|-- SPBPayment
+PayStrat <|-- CryptoPayment
+PayProc --|> PayStrat
+@enduml
